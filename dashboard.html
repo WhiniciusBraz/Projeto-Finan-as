@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinançasApp - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Finanças<span>App</span></h1>
+            <button id="btnLogout" class="btn-logout">Sair</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="resume-section">
+            <div class="card card-in">
+                <h3>Entradas</h3>
+                <p id="totalIn">R$ 0,00</p>
+            </div>
+            <div class="card card-out">
+                <h3>Saídas</h3>
+                <p id="totalOut">R$ 0,00</p>
+            </div>
+            <div class="card card-total" id="cardBalance">
+                <h3>Saldo Atual</h3>
+                <p id="totalBalance">R$ 0,00</p>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <section class="form-section">
+                <h2>Nova Transação</h2>
+                <form id="transactionForm">
+                    <div class="input-group">
+                        <label for="desc">Descrição</label>
+                        <input type="text" id="desc" placeholder="Ex: Salário, Mercado" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="amount">Valor (R$)</label>
+                        <input type="number" step="0.01" id="amount" placeholder="0.00" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="type">Tipo</label>
+                        <select id="type" required>
+                            <option value="entrada">Entrada</option>
+                            <option value="saida">Saída</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Adicionar</button>
+                </form>
+            </section>
+
+            <section class="table-section">
+                <h2>Extrato de Transações</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Valor</th>
+                                <th>Tipo</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

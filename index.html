@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinançasApp - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <header class="login-header">
+            <h1>Finanças<span>App</span></h1>
+            <p>Gerencie seu dinheiro de forma inteligente</p>
+        </header>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" placeholder="Digite 'admin'" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Digite '1234'" required>
+            </div>
+            
+            <button type="submit" class="btn-primary">Entrar no Sistema</button>
+            <p id="loginError" class="error-message" style="display: none;">Usuário ou senha incorretos!</p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
