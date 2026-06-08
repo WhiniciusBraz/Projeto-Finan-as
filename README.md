@@ -34,7 +34,7 @@ Projeto acadêmico desenvolvido para a disciplina de Oficina de Programação.
 ## 🚀 Principais Funcionalidades
 
 * **Autenticação Simulada:** Proteção de rotas e bloqueio de acesso sem credenciais.
-* **Motor SPA (Single Page Application):** Navegação fluida entre abas sem recarregar a página.
+* **Fluidez:** Navegação fluida entre abas sem recarregar a página.
 * **Dashboard Dinâmico:** Resumo de saldo, receitas e despesas filtrados por mês de referência.
 * **Múltiplos Cartões de Crédito:** Cadastro dinâmico de cartões com cálculo de limite e faturas individuais.
 * **Sistema Especialista de Recomendação:** Motor heurístico (simulação de IA) que analisa os hábitos de gastos em tempo real e fornece conselhos financeiros baseados em regras lógicas.
