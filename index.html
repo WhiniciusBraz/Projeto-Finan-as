@@ -3,32 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinançasApp - Login</title>
+    <title>FinançasPro - Sistema de Gestão Inteligente</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-<body class="login-page">
-    <div class="login-container">
-        <header class="login-header">
-            <h1>Finanças<span>App</span></h1>
-            <p>Gerencie seu dinheiro de forma inteligente</p>
-        </header>
-        
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Usuário</label>
-                <input type="text" id="username" placeholder="Digite 'admin'" required>
-            </div>
-            
-            <div class="input-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" placeholder="Digite '1234'" required>
-            </div>
-            
-            <button type="submit" class="btn-primary">Entrar no Sistema</button>
-            <p id="loginError" class="error-message" style="display: none;">Usuário ou senha incorretos!</p>
-        </form>
+<body>
+
+    <div id="loginScreen" class="login-page">
+        <div class="login-container">
+            <header class="login-header">
+                <h1><i class="ph-fill ph-wallet"></i> Finanças<span>Pro</span></h1>
+                <p>Acesse sua plataforma financeira de mercado</p>
+            </header>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Usuário</label>
+                    <div class="input-icon">
+                        <i class="ph ph-user"></i>
+                        <input type="text" id="username" placeholder="admin" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <div class="input-icon">
+                        <i class="ph ph-lock-key"></i>
+                        <input type="password" id="password" placeholder="1234" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Autenticar <i class="ph ph-arrow-right"></i></button>
+                <p id="loginError" class="error-message" style="display: none;"><i class="ph ph-warning-circle"></i> Credenciais inválidas!</p>
+            </form>
+        </div>
     </div>
+
+    <div id="appContainer" class="app-container" style="display: none;">
+        
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2><i class="ph-fill ph-wallet"></i> Finanças<span>Pro</span></h2>
+            </div>
+            <nav class="sidebar-menu">
+                <button type="button" class="menu-item active" onclick="switchTab('dashboard')"><i class="ph ph-squares-four"></i> Dashboard</button>
+                <button type="button" class="menu-item" onclick="switchTab('receitas')"><i class="ph ph-trend-up"></i> Receitas</button>
+                <button type="button" class="menu-item" onclick="switchTab('despesas')"><i class="ph ph-trend-down"></i> Despesas</button>
+                <button type="button" class="menu-item" onclick="switchTab('categorias')"><i class="ph ph-tags"></i> Categorias e Cartões</button>
+                <button type="button" class="menu-item" onclick="switchTab('relatorios')"><i class="ph ph-chart-pie-slice"></i> Relatórios</button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=0284c7&color=fff&bold=true" alt="Avatar" class="avatar">
+                    <div class="user-info">
+                        <strong>Admin User</strong>
+                        <span>Plano Premium ✨</span>
+                    </div>
+                </div>
+                <button type="button" id="btnLogout" class="btn-logout"><i class="ph ph-sign-out"></i> Sair do Sistema</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="global-filter-container">
+                <label for="globalMonth"><i class="ph ph-calendar-blank"></i> Mês de Referência:</label>
+                <input type="month" id="globalMonth" class="month-selector">
+            </div>
+            
+            <section id="tab-dashboard" class="tab-content active-tab">
+                <div class="content-header">
+                    <h2>Visão Geral do Painel</h2>
+                    <p id="welcomeMessage">Acompanhe a saúde do seu patrimônio em tempo real.</p>
+                </div>
+
+                <div class="resume-grid">
+                    <div class="card card-in">
+                        <div class="card-header"><h3>Total Receitas</h3> <i class="ph ph-arrow-circle-up"></i></div>
+                        <p id="dashIn">R$ 0,00</p>
+                    </div>
+                    <div class="card card-out">
+                        <div class="card-header"><h3>Total Despesas</h3> <i class="ph ph-arrow-circle-down"></i></div>
+                        <p id="dashOut">R$ 0,00</p>
+                    </div>
+                    <div class="card" id="dashBalanceCard">
+                        <div class="card-header"><h3>Saldo Consolidado</h3> <i class="ph ph-coins"></i></div>
+                        <p id="dashBalance">R$ 0,00</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button type="button" class="action-btn" onclick="switchTab('receitas')">
+                        <div class="icon-box in"><i class="ph ph-plus"></i></div>
+                        <span>Nova Receita</span>
+                    </button>
+                    <button type="button" class="action-btn" onclick="switchTab('despesas')">
+                        <div class="icon-box out"><i class="ph ph-minus"></i></div>
+                        <span>Nova Despesa</span>
+                    </button>
+                    <button type="button" class="action-btn" onclick="switchTab('categorias')">
+                        <div class="icon-box card-icon"><i class="ph ph-credit-card"></i></div>
+                        <span>Novo Cartão</span>
+                    </button>
+                    <button type="button" class="action-btn" onclick="exportToCSV()">
+                        <div class="icon-box export"><i class="ph ph-download-simple"></i></div>
+                        <span>Exportar Mês</span>
+                    </button>
+                </div>
+
+                <div class="dashboard-body-grid">
+                    <div class="panel-box">
+                        <h3><i class="ph ph-credit-card"></i> Meus Cartões de Crédito</h3>
+                        <div id="cardsContainer">
+                            </div>
+                    </div>
+                    <div class="panel-box saving-tips-box">
+                        <h3><i class="ph ph-brain"></i> Sistema Analítico de Recomendação</h3>
+                        <p id="savingTipText">Carregando análise dos seus hábitos financeiros...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-receitas" class="tab-content">
+                <h2><i class="ph ph-trend-up"></i> Gerenciamento de Receitas</h2>
+                <div class="page-action-grid">
+                    <form id="formReceita" class="panel-box">
+                        <h3>Adicionar Entrada</h3>
+                        <div class="input-group"><label>Data</label><input type="date" id="recDate" required></div>
+                        <div class="input-group"><label>Descrição</label><input type="text" id="recDesc" required></div>
+                        <div class="input-group"><label>Valor</label><input type="text" id="recAmount" class="money-input" placeholder="R$ 0,00" required></div>
+                        <div class="input-group"><label>Categoria</label><select id="recCat" class="cat-dropdown"></select></div>
+                        <button type="submit" class="btn-primary"><i class="ph ph-check-circle"></i> Salvar Receita</button>
+                    </form>
+                    <div class="panel-box table-wrapper">
+                        <h3>Entradas do Mês</h3>
+                        <table>
+                            <thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Valor</th><th>Ações</th></tr></thead>
+                            <tbody id="tableReceitas"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-despesas" class="tab-content">
+                <h2><i class="ph ph-trend-down"></i> Gerenciamento de Despesas</h2>
+                <div class="page-action-grid">
+                    <form id="formDespesa" class="panel-box">
+                        <h3>Adicionar Saída</h3>
+                        <div class="input-group"><label>Data</label><input type="date" id="expDate" required></div>
+                        <div class="input-group"><label>Descrição</label><input type="text" id="expDesc" required></div>
+                        <div class="input-group"><label>Valor</label><input type="text" id="expAmount" class="money-input" placeholder="R$ 0,00" required></div>
+                        <div class="input-group"><label>Categoria</label><select id="expCat" class="cat-dropdown"></select></div>
+                        <div class="input-group"><label>Forma de Pagamento</label><select id="expMethod" class="method-dropdown"></select></div>
+                        <button type="submit" class="btn-primary"><i class="ph ph-check-circle"></i> Salvar Despesa</button>
+                    </form>
+                    <div class="panel-box table-wrapper">
+                        <h3>Saídas do Mês</h3>
+                        <table>
+                            <thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Pagamento</th><th>Valor</th><th>Ações</th></tr></thead>
+                            <tbody id="tableDespesas"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-categorias" class="tab-content">
+                <h2><i class="ph ph-tags"></i> Gerenciamento de Categorias e Cartões</h2>
+                <div class="page-action-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div>
+                        <form id="formCategoria" class="panel-box">
+                            <h3><i class="ph ph-tag"></i> Nova Categoria</h3>
+                            <div class="input-group"><label>Nome da Categoria</label><input type="text" id="newCatName" required></div>
+                            <button type="submit" class="btn-primary"><i class="ph ph-plus"></i> Criar Categoria</button>
+                        </form>
+                        <div class="panel-box">
+                            <h3>Categorias Ativas</h3>
+                            <ul id="listCategorias" class="custom-list"></ul>
+                        </div>
+                    </div>
+                    <div>
+                        <form id="formCartao" class="panel-box">
+                            <h3><i class="ph ph-credit-card"></i> Novo Cartão de Crédito</h3>
+                            <div class="input-group"><label>Nome do Cartão (Ex: Nubank)</label><input type="text" id="newCardName" required></div>
+                            <div class="input-group"><label>Limite Total</label><input type="text" id="newCardLimit" class="money-input" placeholder="R$ 0,00" required></div>
+                            <button type="submit" class="btn-primary"><i class="ph ph-plus"></i> Adicionar Cartão</button>
+                        </form>
+                        <div class="panel-box">
+                            <h3>Cartões Ativos</h3>
+                            <ul id="listCartoes" class="custom-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-relatorios" class="tab-content">
+                <h2><i class="ph ph-chart-pie-slice"></i> Central de Relatórios</h2>
+                <div class="panel-box filter-report-box">
+                    <h3>Filtros Avançados</h3>
+                    <div class="filter-row">
+                        <div class="input-group"><label>Filtrar por Categoria</label><select id="reportFilterCat"><option value="todas">Todas as Categorias</option></select></div>
+                        <button type="button" onclick="applyReportFilter()" class="btn-secondary"><i class="ph ph-funnel"></i> Aplicar</button>
+                        <button type="button" onclick="exportToCSV()" class="btn-success"><i class="ph ph-download-simple"></i> Exportar CSV</button>
+                    </div>
+                </div>
+                <div class="panel-box table-wrapper margin-top">
+                    <h3>Demonstrativo do Mês</h3>
+                    <table>
+                        <thead><tr><th>Data</th><th>Tipo</th><th>Descrição</th><th>Categoria</th><th>Valor</th></tr></thead>
+                        <tbody id="tableRelatorio"></tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
